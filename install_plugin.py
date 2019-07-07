@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 import jenkins
 server = jenkins.Jenkins(url="http://localhost:8080", username='ops', password='ops')
 
@@ -79,5 +81,9 @@ plugins_name = [
     "localization-zh-cn"
 ]
 
-for name in plugins_name:
-    info = server.install_plugin(name,True)
+count_list = len(plugins_name)
+for k, v in enumerate(plugins_name, start=1):
+    print "%s/%s, installing %s" % (k, count_list, v)
+    info = server.install_plugin(v,True)
+
+print "all default plugins install finished"
