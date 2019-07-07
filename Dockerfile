@@ -44,4 +44,7 @@ RUN chown -R jenkins:jenkins /opt/maven && usermod -a -G docker jenkins
 RUN apt-get clean
 
 USER jenkins
+ADD --chown=jenkins:jenkins ./install.sh /var/jenkins_home/
+ADD --chown=jenkins:jenkins ./plugins.txt /var/jenkins_home/
+RUN echo 'cd /var/jenkins_home/ && sh install.sh $(echo $(cat plugins.txt))' >> /etc/rc.local
 WORKDIR /var/jenkins_home
