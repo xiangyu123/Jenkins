@@ -1,9 +1,9 @@
 # build jenkins image
-docker build --force-rm=true -t jenkins_docker .
-docker rmi -f $(docker images -f "dangling=true" -q)
+sudo docker build --force-rm=true -t jenkins_docker .
+sudo docker rmi -f $(docker images -f "dangling=true" -q)
 
 # start jenkins container
-docker run -d --name="docker_jenkins" -v /var/run/docker.sock:/var/run/docker.sock  -p 8080:8080 -p 50000:50000 jenkins_docker:latest
+sudo docker run -d --name="docker_jenkins" -v /var/run/docker.sock:/var/run/docker.sock  -p 8080:8080 -p 50000:50000 jenkins_docker:latest
 sleep 30 # wait jenkins starts
 
 # get jenkins-cli.jar
