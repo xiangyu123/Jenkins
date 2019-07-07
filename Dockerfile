@@ -46,5 +46,6 @@ RUN apt-get clean
 USER jenkins
 ADD --chown=jenkins:jenkins ./install.sh /var/jenkins_home/
 ADD --chown=jenkins:jenkins ./plugins.txt /var/jenkins_home/
-RUN echo 'cd /var/jenkins_home/ && sh install.sh $(echo $(cat plugins.txt))' >> /etc/rc.local
+RUN chmod a+x /var/jenkins_home/install.sh
+#RUN echo 'cd /var/jenkins_home/ && sh install.sh $(echo $(cat plugins.txt))' >> /etc/rc.local
 WORKDIR /var/jenkins_home
